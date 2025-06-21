@@ -1,5 +1,5 @@
 use rand::Rng;
-use rand::seq::SliceRandom;
+use rand::distributions::{Distribution, Standard};
 use serde::{Deserialize, Serialize};
 use strum_macros::Display;
 
@@ -16,13 +16,18 @@ pub enum Class {
     Bard,
 }
 
-pub fn all_classes() -> &'static [Class] {
-    use Class::*;
-    &[
-        Thief, Ranger, Wizard, Warlock, Warrior, Paladin, Cleric, Bard,
-    ]
-}
-
-pub fn random_class<R: Rng + ?Sized>(rng: &mut R) -> Class {
-    *all_classes().choose(rng).unwrap()
+impl Distribution<Class> for Standard {
+    fn sample<R: Rng + ?Sized>(&self, rng: &mut R) -> Class {
+        use Class::*;
+        match rng.gen_range(0..=12) {
+            0 => Thief,
+            1 => Ranger,
+            2 => Wizard,
+            3 => Warlock,
+            4 => Warrior,
+            5 => Paladin,
+            6 => Cleric,
+            _ => Bard,
+        }
+    }
 }

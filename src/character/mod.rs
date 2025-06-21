@@ -9,13 +9,11 @@ pub mod stats;
 
 use abilities::get_class_abilities;
 use class::Class;
-use class::random_class;
 use inventory::Inventory;
 use personality::Personality;
 use quality::Quality;
 use quality::get_random_quality;
 use race::Race;
-use race::random_race;
 use stats::Stats;
 use stats::get_stats;
 
@@ -38,8 +36,8 @@ impl Character {
     pub fn new(name: &str) -> Self {
         let mut rng = rand::thread_rng();
         let quality: Quality = get_random_quality(&mut rng);
-        let race: Race = random_race(&mut rng);
-        let class: Class = random_class(&mut rng);
+        let race: Race = rand::random();
+        let class: Class = rand::random();
 
         Character {
             name: name.to_string(),

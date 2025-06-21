@@ -41,11 +41,3 @@ impl Distribution<Race> for Standard {
         }
     }
 }
-
-pub fn all_races() -> &'static [Race] {
-    use Race::*;
-    &[
-        Human, Troll, Orc, Leonin, Elf, Centaur, Harpy, Halfling, Draconic, Gnome, Goblin, Dwarf,
-        Minotaur,
-    ]
-}
