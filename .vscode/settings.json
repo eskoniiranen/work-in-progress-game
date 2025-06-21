@@ -1,0 +1,9 @@
+{
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.completion.autoimport.enable": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rust-lang.rust-analyzer",
+  "files.exclude": {
+    "**/target": true
+  }
+}
