@@ -5,15 +5,15 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Stats {
-    pub strength: i32,
-    pub dexterity: i32,
-    pub wisdom: i32,
-    pub tenacity: i32,
+    pub strength: i16,
+    pub dexterity: i16,
+    pub wisdom: i16,
+    pub tenacity: i16,
 }
 
-const HIGH: i32 = 3;
-const NORMAL: i32 = 0;
-const LOW: i32 = -3;
+const HIGH: i16 = 3;
+const NORMAL: i16 = 0;
+const LOW: i16 = -3;
 
 pub fn get_quality_stats(quality: Quality) -> Stats {
     Stats {

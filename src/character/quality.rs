@@ -1,10 +1,10 @@
 use rand::distributions::WeightedIndex;
 use rand::prelude::*;
 
-pub const STANDARD: i32 = 10;
-pub const UNCOMMON: i32 = 12;
-pub const RARE: i32 = 14;
-pub const EPIC: i32 = 16;
+pub const STANDARD: i16 = 10;
+pub const UNCOMMON: i16 = 12;
+pub const RARE: i16 = 14;
+pub const EPIC: i16 = 16;
 
 #[derive(Debug, Clone, Copy)]
 pub enum Quality {
@@ -29,7 +29,7 @@ pub fn get_random_quality(rng: &mut impl Rng) -> Quality {
 }
 
 impl Quality {
-    pub fn value(&self) -> i32 {
+    pub fn value(&self) -> i16 {
         match self {
             Quality::Standard => STANDARD,
             Quality::Uncommon => UNCOMMON,

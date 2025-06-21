@@ -50,7 +50,7 @@ pub struct ItemStats {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum ItemEffect {
-    IncreaseStat { stat: String, amount: i32 },
+    IncreaseStat { stat: String, amount: i16 },
     GrantAbility(String),
     None,
 }
