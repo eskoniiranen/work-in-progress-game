@@ -15,12 +15,14 @@ const HIGH: i16 = 3;
 const NORMAL: i16 = 0;
 const LOW: i16 = -3;
 
-pub fn get_quality_stats(quality: Quality) -> Stats {
-    Stats {
-        strength: quality.value(),
-        dexterity: quality.value(),
-        wisdom: quality.value(),
-        tenacity: quality.value(),
+impl From<Quality> for Stats {
+    fn from(quality: Quality) -> Stats {
+        Stats {
+            strength: quality.value(),
+            dexterity: quality.value(),
+            wisdom: quality.value(),
+            tenacity: quality.value(),
+        }
     }
 }
 
@@ -110,7 +112,7 @@ pub fn get_race_base_stats(race: &Race) -> Stats {
 }
 
 pub fn get_stats(race: &Race, quality: Quality) -> Stats {
-    get_race_base_stats(race).combine(&get_quality_stats(quality))
+    get_race_base_stats(race).combine(&Stats::from(quality))
 }
 
 impl Stats {
