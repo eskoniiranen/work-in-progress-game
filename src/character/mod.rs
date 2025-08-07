@@ -5,6 +5,7 @@ pub mod item;
 pub mod personality;
 pub mod quality;
 pub mod race;
+pub mod skill;
 pub mod stats;
 
 use abilities::get_class_abilities;
@@ -19,13 +20,16 @@ use stats::get_stats;
 
 use serde::{Deserialize, Serialize};
 
-use self::personality::get_personality;
+use crate::{common::position::Position, raid::{boss::Boss, raidcontrol::TargetType}};
+
+use self::{personality::get_personality, skill::Skill};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Character {
     pub name: String,
     pub class: Class,
     pub race: Race,
+    pub quality: Quality,
     pub personality: Personality,
     pub inventory: Inventory,
     pub abilities: Vec<String>,
@@ -43,10 +47,20 @@ impl Character {
             name: name.to_string(),
             class,
             race,
+            quality,
             personality: get_personality(&mut rng, quality),
             inventory: Inventory::default(),
             abilities: get_class_abilities(&class),
             stats: get_stats(&race, quality),
         }
     }
+}
+
+#[derive(Debug)]
+pub struct CharacterState {
+    pub character: Character,
+    pub position: Position,
+    pub skills: Vec<Skill>,
+    pub target_priority: TargetType,
+    pub current_target: Option<Boss>,
 }

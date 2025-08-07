@@ -1,12 +1,13 @@
 use rand::distributions::WeightedIndex;
 use rand::prelude::*;
+use serde::{Deserialize, Serialize};
 
 pub const STANDARD: i16 = 10;
 pub const UNCOMMON: i16 = 12;
 pub const RARE: i16 = 14;
 pub const EPIC: i16 = 16;
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Deserialize, Serialize)]
 pub enum Quality {
     Standard,
     Uncommon,
